@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariana & Guilherme — 24.10.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #3d5a3e;
+    --verde-claro: #5a7a4a;
+    --verde-musgo: #2c3e2d;
+    --verde-sage: #7a9472;
+    --amarelo: #f5c842;
+    --amarelo-escuro: #d4a017;
+    --creme: #faf6ee;
+    --creme-escuro: #f0e8d5;
+    --texto: #2c2c2c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--creme);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(44,62,45,0.92);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 1rem 2rem;
+  }
+  nav a {
+    color: var(--creme);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: all 0.2s;
+  }
+  nav a:hover { opacity: 1; color: var(--amarelo); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background-image: url('girassol.png');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.45) saturate(0.8);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom,
+        rgba(44,62,45,0.55) 0%,
+        rgba(44,62,45,0.2) 40%,
+        rgba(20,30,20,0.7) 100%
+      );
+  }
+
+  .hero-deco {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-deco svg {
+    position: absolute;
+    opacity: 0.12;
+  }
+  .hero-deco .deco-left  { left: 0; top: 0; height: 100%; width: auto; }
+  .hero-deco .deco-right { right: 0; top: 0; height: 100%; width: auto; transform: scaleX(-1); }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 7rem 2rem 4rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--amarelo);
+    margin-bottom: 1.4rem;
+    animation: fadeUp 1.2s 0.1s ease both;
+  }
+
+  .hero-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 11vw, 8rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    animation: fadeUp 1.2s 0.25s ease both;
+  }
+  .hero-names .amp {
+    display: block;
+    font-style: italic;
+    color: var(--amarelo);
+    font-size: 0.42em;
+    letter-spacing: 0.12em;
+    margin: 0.5rem 0 0.4rem;
+    font-weight: 300;
+  }
+
+  .hero-rule {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--amarelo), transparent);
+    margin: 2rem auto;
+    animation: fadeUp 1.2s 0.4s ease both;
+  }
+
+  .hero-date-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    animation: fadeUp 1.2s 0.5s ease both;
+  }
+  .hero-date-block span {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .hero-date-block .dot {
+    width: 4px; height: 4px;
+    background: var(--amarelo);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 2s 1.5s ease both;
+  }
+  .hero-scroll span {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(35px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* ── COUNTDOWN ── */
+  #countdown {
+    background: var(--verde-musgo);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(245,200,66,0.12);
+  }
+  .countdown-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--amarelo);
+    margin-bottom: 1.8rem;
+    opacity: 0.8;
+  }
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .countdown-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .countdown-item:last-child { border-right: none; }
+  .countdown-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.8rem;
+    font-weight: 300;
+    color: var(--creme);
+    line-height: 1;
+  }
+  .countdown-unit {
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--verde-sage);
+    margin-top: 0.4rem;
+  }
+
+  /* ── SHARED ── */
+  section { padding: 5rem 2rem; }
+  .section-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--verde-sage);
+    display: block;
+    text-align: center;
+    margin-bottom: 0.7rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--verde-musgo);
+    margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--verde-claro); }
+  .section-lead {
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.75;
+  }
+
+  /* ── LOCAL ── */
+   #local { background: var(--creme-escuro); }
+  .local-card {
+    max-width: 580px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 8px 50px rgba(44,62,45,0.11);
+
+    
+
+  }
+  .local-card {
+    max-width: 580px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 8px 50px rgba(44,62,45,0.11);
+  }
+  .local-top {
+    background: var(--verde);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .local-top::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px);
+  }
+  .local-pin { font-size: 2rem; margin-bottom: 0.5rem; position: relative; z-index: 1; }
+  .local-top h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--creme);
+    position: relative; z-index: 1;
+  }
+  .local-top p {
+    font-size: 0.76rem;
+    color: rgba(250,246,238,0.6);
+    margin-top: 0.3rem;
+    position: relative; z-index: 1;
+  }
+  .local-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .local-detail {
+    padding: 1.3rem 1.6rem;
+    border-right: 1px solid var(--creme-escuro);
+    border-bottom: 1px solid var(--creme-escuro);
+  }
+  .local-detail:nth-child(2n) { border-right: none; }
+  .local-detail:nth-last-child(-n+2) { border-bottom: none; }
+  .local-detail h4 {
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--verde-sage);
+    margin-bottom: 0.35rem;
+  }
+  .local-detail p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--verde-musgo);
+    line-height: 1.4;
+  }
+  .btn-maps {
+    display: block;
+    margin: 1.5rem;
+    padding: 0.85rem;
+    background: var(--verde);
+    color: var(--creme);
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 1px;
+    transition: background 0.2s;
+  }
+  .btn-maps:hover { background: var(--verde-claro); }
+
+  /* ── LISTS ── */
+  #listas { background: var(--creme); }
+  .lists-tabs {
+    display: flex;
+    max-width: 540px;
+    margin: 0 auto 3rem;
+    border: 1.5px solid var(--verde);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 0.9rem 1rem;
+    border: none;
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--verde);
+    transition: all 0.25s;
+  }
+  .tab-btn.active { background: var(--verde); color: var(--creme); }
+  .list-panel { display: none; }
+  .list-panel.active { display: block; }
+
+  /* CB — link only */
+  .cb-wrapper { max-width: 640px; margin: 0 auto; }
+  .cb-top {
+    background: linear-gradient(135deg, #3d5a3e);
+    border-radius: 4px 4px 0 0;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .cb-top h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+  }
+  .cb-top p { color: rgba(255,255,255,0.78); font-size: 0.85rem; line-height: 1.6; max-width: 400px; margin: 0 auto; }
+  .cb-body {
+    background: white;
+    border-radius: 0 0 4px 4px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .cb-body p { color: #666; font-size: 0.88rem; line-height: 1.75; margin-bottom: 1.8rem; }
+  .btn-cb-main {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #3d5a3e;
+    color: white;
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s;
+    font-family: 'Jost', sans-serif;
+  }
+  .btn-cb-main:hover { background: #3d5a3e; }
+  .cb-note-small { margin-top: 1.2rem; font-size: 0.76rem; color: #bbb; }
+
+  /* PIX / Ctrl+S list */
+  .pix-header {
+    background: linear-gradient(135deg, var(--verde-musgo), var(--verde));
+    border-radius: 4px 4px 0 0;
+    padding: 1.8rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .pix-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--creme);
+    font-weight: 300;
+  }
+  .pix-header p { color: rgba(250,246,238,0.62); font-size: 0.78rem; margin-top: 0.2rem; }
+  .pix-badge {
+    background: var(--amarelo);
+    color: var(--verde-musgo);
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .pix-note {
+    background: #f3f8f3;
+    border-left: 3px solid var(--verde-sage);
+    padding: 1rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  .pix-section { max-width: 960px; margin: 0 auto; }
+
+  /* Category accordion */
+  .pix-cat-header {
+    background: white;
+    border-top: 1px solid var(--creme-escuro);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .pix-cat-header:hover { background: #f8fdf8; }
+  .pix-cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    color: var(--verde-musgo);
+  }
+  .pix-cat-right { display: flex; align-items: center; gap: 0.8rem; }
+  .pix-cat-count { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--verde-sage); }
+  .pix-cat-arrow { font-size: 0.65rem; color: var(--verde-sage); transition: transform 0.22s; }
+  .pix-cat-header.open .pix-cat-arrow { transform: rotate(180deg); }
+
+  .pix-items-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--creme-escuro);
+  }
+  .pix-items-grid.open { display: grid; }
+
+  .pix-item-card {
+    background: white;
+    padding: 1rem 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    transition: background 0.15s;
+  }
+  .pix-item-card:hover { background: #f5fbf5; }
+  .pix-item-info { flex: 1; }
+  .pix-item-name { font-size: 0.86rem; color: var(--verde-musgo); }
+  .pix-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--verde-claro);
+    margin-top: 0.1rem;
+  }
+  .btn-presentear {
+    padding: 0.4rem 0.8rem;
+    background: var(--amarelo);
+    color: var(--verde-musgo);
+    border: none;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .btn-presentear:hover { background: var(--amarelo-escuro); color: white; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(15,25,15,0.88);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--creme);
+    border-radius: 4px;
+    max-width: 420px;
+    width: 100%;
+    overflow: hidden;
+    animation: modalIn 0.26s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.94) translateY(16px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-header {
+    background: var(--verde-musgo);
+    padding: 1.4rem 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--creme);
+    font-weight: 300;
+  }
+  .modal-close {
+    background: none; border: none;
+    color: rgba(250,246,238,0.55);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--creme); }
+  .modal-body { padding: 1.8rem; }
+  .modal-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--verde-musgo);
+    margin-bottom: 0.2rem;
+  }
+  .modal-item-price {
+    font-size: 1rem;
+    color: var(--verde-claro);
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+  }
+  .pix-box {
+    background: var(--verde-musgo);
+    border-radius: 3px;
+    padding: 1.2rem;
+    text-align: center;
+    margin-bottom: 0.9rem;
+  }
+  .pix-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--verde-sage);
+    margin-bottom: 0.45rem;
+  }
+  .pix-key {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--amarelo);
+    margin-bottom: 0.85rem;
+    word-break: break-all;
+  }
+  .btn-copy {
+    background: var(--amarelo);
+    color: var(--verde-musgo);
+    border: none;
+    padding: 0.48rem 1.1rem;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .btn-copy:hover { background: var(--amarelo-escuro); color: white; }
+  .modal-mp-link {
+    display: block;
+    padding: 0.82rem;
+    background: #009ee3;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    margin-bottom: 0.9rem;
+  }
+  .modal-mp-link:hover { background: #007bb5; }
+  .modal-note { font-size: 0.73rem; color: #aaa; text-align: center; line-height: 1.6; }
+
+  /* ── RSVP ── */
+  #confirmacao { background: var(--creme-escuro); }
+  .rsvp-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 2px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+  }
+  .rsvp-field { margin-bottom: 1.2rem; }
+  .rsvp-label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--verde-sage);
+    margin-bottom: 0.4rem;
+  }
+  .rsvp-input {
+    width: 100%;
+    padding: 0.78rem 1rem;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background: white;
+    color: var(--texto);
+    resize: vertical;
+  }
+  .rsvp-input:focus { border-color: var(--verde); }
+  .btn-rsvp {
+    width: 100%;
+    padding: 1rem;
+    background: var(--verde);
+    color: var(--creme);
+    border: none;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.4rem;
+  }
+  .btn-rsvp:hover { background: var(--verde-claro); }
+  .rsvp-success {
+    display: none;
+    margin-top: 1.2rem;
+    padding: 1rem;
+    background: #f0f7f0;
+    border-radius: 2px;
+    text-align: center;
+    color: var(--verde-musgo);
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--verde-musgo);
+    padding: 3.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(245,200,66,0.1);
+  }
+  .footer-sun { font-size: 1.6rem; opacity: 0.45; margin-bottom: 0.8rem; }
+  .footer-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 300;
+    color: var(--creme);
+    margin-bottom: 0.4rem;
+  }
+  .footer-names em { color: var(--amarelo); font-style: italic; }
+  .footer-date {
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--verde-sage);
+    margin-bottom: 0.5rem;
+  }
+  .footer-local { font-size: 0.75rem; color: rgba(250,246,238,0.35); }
+
+  @media (max-width: 600px) {
+    .local-info { grid-template-columns: 1fr; }
+    nav { gap: 1rem; flex-wrap: wrap; font-size: 0.62rem; }
+    .pix-header { flex-direction: column; text-align: center; }
+    .hero-date-block .dot { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero">Início</a>
+  <a href="#local">Cerimônia</a>
+  <a href="#listas">Presentes</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-deco">
+    <svg class="deco-left" viewBox="0 0 100 600" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f5c842" stroke-width="0.8">
+      <path d="M55 600 Q50 500 35 440 Q18 380 45 320 Q72 260 38 200 Q12 150 50 90 Q68 55 60 10"/>
+      <path d="M42 320 Q15 305 6 278 Q0 252 22 244"/>
+      <path d="M40 200 Q12 190 4 165 Q-2 140 20 136"/>
+      <path d="M44 440 Q22 422 10 396 Q4 370 28 364"/>
+      <ellipse cx="22" cy="244" rx="16" ry="9" transform="rotate(-28 22 244)" fill="rgba(245,200,66,0.14)" stroke="none"/>
+      <ellipse cx="20" cy="136" rx="13" ry="7" transform="rotate(-18 20 136)" fill="rgba(245,200,66,0.1)" stroke="none"/>
+      <ellipse cx="28" cy="364" rx="18" ry="9" transform="rotate(-32 28 364)" fill="rgba(245,200,66,0.12)" stroke="none"/>
+    </svg>
+    <svg class="deco-right" viewBox="0 0 100 600" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f5c842" stroke-width="0.8">
+      <path d="M55 600 Q50 500 35 440 Q18 380 45 320 Q72 260 38 200 Q12 150 50 90 Q68 55 60 10"/>
+      <path d="M42 320 Q15 305 6 278 Q0 252 22 244"/>
+      <path d="M40 200 Q12 190 4 165 Q-2 140 20 136"/>
+      <path d="M44 440 Q22 422 10 396 Q4 370 28 364"/>
+      <ellipse cx="22" cy="244" rx="16" ry="9" transform="rotate(-28 22 244)" fill="rgba(245,200,66,0.14)" stroke="none"/>
+      <ellipse cx="20" cy="136" rx="13" ry="7" transform="rotate(-18 20 136)" fill="rgba(245,200,66,0.1)" stroke="none"/>
+      <ellipse cx="28" cy="364" rx="18" ry="9" transform="rotate(-32 28 364)" fill="rgba(245,200,66,0.12)" stroke="none"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Estamos nos casando</p>
+    <h1 class="hero-names">
+      Mariana
+      <span class="amp">&amp;</span>
+      Guilherme
+    </h1>
+    <div class="hero-rule"></div>
+    <div class="hero-date-block">
+      <span>24 de Outubro de 2026</span>
+      <div class="dot"></div>
+      <span>16h00</span>
+      <div class="dot"></div>
+      <span>Taguatinga Sul · DF</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Desça</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div id="countdown">
+  <p class="countdown-label">Faltam para o grande dia</p>
+  <div class="countdown-grid">
+    <div class="countdown-item"><span class="countdown-number" id="cd-dias">--</span><span class="countdown-unit">Dias</span></div>
+    <div class="countdown-item"><span class="countdown-number" id="cd-horas">--</span><span class="countdown-unit">Horas</span></div>
+    <div class="countdown-item"><span class="countdown-number" id="cd-min">--</span><span class="countdown-unit">Minutos</span></div>
+    <div class="countdown-item"><span class="countdown-number" id="cd-seg">--</span><span class="countdown-unit">Segundos</span></div>
+  </div>
+</div>
+
+<!-- LOCAL -->
+<section id="local">
+  <span class="section-tag">Onde acontece</span>
+  <h2 class="section-title">A <em>Cerimônia</em></h2>
+  <p class="section-lead">Será uma tarde abençoada na Paróquia Nossa Senhora de Fátima, em Taguatinga Sul. Te esperamos com muito carinho!</p>
+  <div class="local-card">
+    <div class="local-top">
+      <div class="local-pin">⛪</div>
+      <h3>Paróquia Nossa Senhora de Fátima</h3>
+      <p>Taguatinga Sul · Brasília · DF</p>
+    </div>
+    <div class="local-info">
+      <div class="local-detail"><h4>Data</h4><p>24 de Outubro<br>de 2026</p></div>
+      <div class="local-detail"><h4>Horário</h4><p>16h00<br><small style="font-size:0.78rem;color:#bbb">Pontualmente</small></p></div>
+      <div class="local-detail"><h4>Local</h4><p>Paróquia N. Sra.<br>de Fátima</p></div>
+      <div class="local-detail"><h4>Bairro</h4><p>Taguatinga Sul<br>Brasília — DF</p></div>
+    </div>
+    <a class="btn-maps" href="https://maps.google.com/?q=Paróquia+Nossa+Senhora+de+Fátima+Taguatinga+Sul+DF" target="_blank">🗺️ Abrir no Google Maps</a>
+  </div>
+</section>
+
+<!-- LISTAS -->
+<section id="listas">
+  <span class="section-tag">Com amor e gratidão</span>
+  <h2 class="section-title">Lista de <em>Presentes</em></h2>
+  <p class="section-lead">Escolha como prefere nos presentear. Cada gesto faz parte da construção do nosso novo lar.</p>
+
+  <div class="lists-tabs">
+    <button class="tab-btn active" onclick="showTab('cb',this)">🏪 Lista Casas Bahia</button>
+    <button class="tab-btn" onclick="showTab('pix',this)">💛 Lista Ctrl+S</button>
+  </div>
+
+  <!-- CASAS BAHIA -->
+  <div class="list-panel active" id="tab-cb">
+    <div class="cb-wrapper">
+      <div class="cb-top">
+        <h3>🏪 Lista Casas Bahia</h3>
+        <p>Acesse nossa lista diretamente no site da Casas Bahia. Você escolhe o item e ele chega com garantia e nota fiscal.</p>
+      </div>
+      <div class="cb-body">
+        <p>Nossa lista está cadastrada na <strong>Casas Bahia</strong>. Clique abaixo para acessar o site e encontrar os itens que escolhemos com carinho para o nosso lar.</p>
+        <p>No site, busque por <strong>"Lista de Casamento"</strong> e procure pelo nome <strong>Mariana e Guilherme</strong>.</p>
+        <a class="btn-cb-main" href="https://listas.casasbahia.com.br/casalmassa" target="_blank">🛒 Acessar Lista na Casas Bahia</a>
+        <p class="cb-note-small">Dúvidas? Ligue <strong>0800 722 7272</strong> e informe o nome dos noivos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTRL+S / PIX -->
+  <div class="list-panel" id="tab-pix">
+    <div class="pix-header">
+      <div>
+        <h3>💛 Lista Ctrl+S</h3>
+        <p>Presenteie via Pix — direto para nossa conta</p>
+      </div>
+      <span class="pix-badge" id="total-badge">-- itens</span>
+    </div>
+    <div class="pix-note">
+      🔒 Clique em <strong>Presentear</strong> para ver a chave Pix. O valor vai direto para nossa conta. Coloque seu nome na descrição! 💛
+    </div>
+    <div class="pix-section" id="pix-section"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-sun">🌻</div>
+  <div class="footer-names">Mariana <em>&</em> Guilherme</div>
+  <div class="footer-date">24 · 10 · 2026</div>
+  <div class="footer-local">Paróquia Nossa Senhora de Fátima · Taguatinga Sul · DF</div>
+</footer>
+
+<!-- MODAL PIX -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>💛 Presentear</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-item-name" id="modal-item-name"></div>
+      <div class="modal-item-price" id="modal-item-price"></div>
+      <div class="pix-box">
+        <div class="pix-label">Chave Pix</div>
+<div class="pix-key" id="modal-pix-key" style="display: none;">SEU_PIX@EMAIL.COM</div>        <button class="btn-copy" onclick="copiarPix()">📋 Copiar chave Pix</button>
+      </div>
+      <a class="modal-mp-link" id="modal-mp-link" href="#" target="_blank">💳 Pagar pelo QR code</a>
+      <p class="modal-note">O valor vai direto para nossa conta.<br><strong>Coloque seu nome na descrição</strong> para sabermos que foi você! 💛</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const PIX_KEY = "a2ab9345-96b9-48d5-9906-c2bea4bafa5d";         // ← SUBSTITUA PELA SUA CHAVE PIX
+const MP_LINK = "QRCODEPIX2.png"; // ← SUBSTITUA PELO SEU LINK MERCADO PAGO
+
+const allItems = [
+  { cat: "🏠 Eletrodomésticos Essenciais", nome: "Ventilador de mesa", valor: 180 },
+  { cat: "🏠 Eletrodomésticos Essenciais", nome: "Ventilador de coluna", valor: 260 },
+  { cat: "🏠 Eletrodomésticos Essenciais", nome: "Ferro de passar", valor: 230 },
+  { cat: "📺 Eletrônicos & Elétrica", nome: "Suporte de parede para TV", valor: 120 },
+  { cat: "📺 Eletrônicos & Elétrica", nome: "Fones de ouvido", valor: 250 },
+  { cat: "📺 Eletrônicos & Elétrica", nome: "Caixa de som bluetooth", valor: 250 },
+  { cat: "📺 Eletrônicos & Elétrica", nome: "Carregadores extras", valor: 400 },
+  { cat: "📺 Eletrônicos & Elétrica", nome: "Extensão/filtro de linha (3 un.)", valor: 210 },
+  { cat: "📺 Eletrônicos & Elétrica", nome: "Protetor contra surtos (DPS)", valor: 120 },
+  { cat: "🛋️ Sala de Estar", nome: "Rack/painel para TV", valor: 800 },
+  { cat: "🛋️ Sala de Estar", nome: "Mesa de centro", valor: 450 },
+  { cat: "🛋️ Sala de Estar", nome: "Aparador", valor: 600 },
+  { cat: "🛋️ Sala de Estar", nome: "Estante/livreiro", valor: 650 },
+  { cat: "🛋️ Sala de Estar", nome: "Poltrona", valor: 700 },
+  { cat: "🛋️ Sala de Estar", nome: "Puff", valor: 250 },
+  { cat: "🛋️ Sala de Estar", nome: "Mesa lateral (2 un.)", valor: 500 },
+  { cat: "🛋️ Sala de Estar", nome: "Tapete sala", valor: 600 },
+  { cat: "🛋️ Sala de Estar", nome: "Cortina sala", valor: 350 },
+  { cat: "🛋️ Sala de Estar", nome: "Varão de cortina", valor: 120 },
+  { cat: "🍽️ Sala de Jantar", nome: "Mesa de jantar", valor: 1000 },
+  { cat: "🍽️ Sala de Jantar", nome: "Cadeiras (4 un.)", valor: 1200 },
+  { cat: "🍽️ Sala de Jantar", nome: "Buffet/armário para louças", valor: 900 },
+  { cat: "🛏️ Quarto", nome: "Cama + colchão (Queen)", valor: 2139 },
+  { cat: "🛏️ Quarto", nome: "Cabeceira", valor: 600 },
+  { cat: "🛏️ Quarto", nome: "Criado-mudo (2 un.)", valor: 700 },
+  { cat: "🛏️ Quarto", nome: "Guarda-roupa", valor: 1800 },
+  { cat: "🛏️ Quarto", nome: "Cômoda", valor: 650 },
+  { cat: "🛏️ Quarto", nome: "Espelho de corpo inteiro", valor: 250 },
+  { cat: "🛏️ Quarto", nome: "Sapateira", valor: 148 },
+  { cat: "🛏️ Quarto", nome: "Cabideiro", valor: 220 },
+  { cat: "🛏️ Quarto", nome: "Banco/baú aos pés da cama", valor: 500 },
+  { cat: "💼 Escritório", nome: "Mesa de trabalho", valor: 600 },
+  { cat: "💼 Escritório", nome: "Cadeira ergonômica", valor: 1800 },
+  { cat: "💼 Escritório", nome: "Gaveteiro", valor: 350 },
+  { cat: "💼 Escritório", nome: "Luminária de mesa", valor: 150 },
+  { cat: "💼 Escritório", nome: "Suporte para notebook", valor: 120 },
+  { cat: "💼 Escritório", nome: "Suporte para monitor", valor: 160 },
+  { cat: "🍳 Cozinha (móveis)", nome: "Armário aéreo", valor: 900 },
+  { cat: "🍳 Cozinha (móveis)", nome: "Armário balcão", valor: 1100 },
+  { cat: "🍳 Cozinha (móveis)", nome: "Prateleiras extras", valor: 1350 },
+  { cat: "🍳 Cozinha (móveis)", nome: "Nichos/organizadores de parede", valor: 250 },
+  { cat: "🍳 Cozinha (móveis)", nome: "Carrinho auxiliar", valor: 350 },
+  { cat: "🍳 Cozinha (móveis)", nome: "Lixeira média", valor: 150 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Jogo de panelas (6+ peças)", valor: 700 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Panela de pressão", valor: 180 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Frigideiras (2 un.)", valor: 250 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Wok", valor: 180 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Assadeiras (kit)", valor: 180 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Forma de bolo", valor: 70 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Forma de pão", valor: 70 },
+  { cat: "🥘 Panelas & Assadeiras", nome: "Forma de pizza", valor: 60 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Facas (kit básico)", valor: 220 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Chaira/afiador", valor: 80 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Tábua de corte", valor: 70 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Colheres + espátulas (kit)", valor: 120 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Concha + escumadeira (kit)", valor: 80 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Pegador de massas + salada", valor: 70 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Abridor de latas", valor: 40 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Saca-rolhas/abridor", valor: 60 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Descascador", valor: 25 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Ralador", valor: 45 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Espremedor de alho", valor: 35 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Espremedor de limão", valor: 35 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Fouet", valor: 25 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Peneiras (kit)", valor: 60 },
+  { cat: "🔪 Utensílios de Cozinha", nome: "Escorredor de macarrão/ralo", valor: 50 },
+  { cat: "📦 Organização & Armazenamento", nome: "Potes herméticos (kit)", valor: 175 },
+  { cat: "📦 Organização & Armazenamento", nome: "Potes mantimentos (farinha/açúcar/café/arroz/feijão)", valor: 200 },
+  { cat: "📦 Organização & Armazenamento", nome: "Porta-temperos", valor: 120 },
+  { cat: "📦 Organização & Armazenamento", nome: "Organizadores de gaveta", valor: 80 },
+  { cat: "📦 Organização & Armazenamento", nome: "Suporte para tampas", valor: 60 },
+  { cat: "📦 Organização & Armazenamento", nome: "Suporte para pratos", valor: 70 },
+  { cat: "🍷 Mesa Posta", nome: "Aparelho de jantar (18 peças)", valor: 350 },
+  { cat: "🍷 Mesa Posta", nome: "Copos (jogo 12 un.)", valor: 120 },
+  { cat: "🍷 Mesa Posta", nome: "Canecas (jogo 6 un.)", valor: 120 },
+  { cat: "🍷 Mesa Posta", nome: "Taças de vinho (jogo 6 un.)", valor: 180 },
+  { cat: "🍷 Mesa Posta", nome: "Talheres (faqueiro 24 peças)", valor: 200 },
+  { cat: "🍷 Mesa Posta", nome: "Jogo americano (6 un.)", valor: 150 },
+  { cat: "🍷 Mesa Posta", nome: "Sousplat (jogo 6 un.)", valor: 180 },
+  { cat: "🍷 Mesa Posta", nome: "Descanso de panela (6 un.)", valor: 60 },
+  { cat: "🍷 Mesa Posta", nome: "Pegador de panela/luva térmica", valor: 50 },
+  { cat: "🍷 Mesa Posta", nome: "Avental", valor: 60 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Tigelas (jogo)", valor: 120 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Travessas (kit)", valor: 160 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Prato de bolo", valor: 80 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Boleira", valor: 120 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Jarra de água", valor: 60 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Garrafa térmica", valor: 150 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Açucareiro", valor: 35 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Saleiro + pimenteiro", valor: 60 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Manteigueira", valor: 45 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Porta-guardanapos", valor: 40 },
+  { cat: "🫙 Louças & Vidro (extras)", nome: "Guardanapos (kit)", valor: 60 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Panos de prato (10 un.)", valor: 80 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Luva térmica", valor: 35 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Pegador de macarrão", valor: 35 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Medidores (copos + colheres)", valor: 60 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Balança de cozinha", valor: 120 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Timer de cozinha", valor: 40 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Termômetro culinário", valor: 90 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Funil", valor: 20 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Escorredor de louça", valor: 120 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Escorredor de talheres", valor: 50 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Tapete de pia", valor: 30 },
+  { cat: "🧰 Acessórios de Cozinha", nome: "Escorredor de salada", valor: 70 },
+  { cat: "🧼 Limpeza Pesada", nome: "Vassoura", valor: 50 },
+  { cat: "🧼 Limpeza Pesada", nome: "Pá", valor: 25 },
+  { cat: "🧼 Limpeza Pesada", nome: "Rodo", valor: 50 },
+  { cat: "🧼 Limpeza Pesada", nome: "Balde", valor: 35 },
+  { cat: "🧼 Limpeza Pesada", nome: "Escova de vaso sanitário", valor: 25 },
+  { cat: "🧼 Limpeza Pesada", nome: "Escova para azulejo", valor: 25 },
+  { cat: "🧼 Limpeza Pesada", nome: "Esponjas (kit)", valor: 20 },
+  { cat: "🧼 Limpeza Pesada", nome: "Panos de chão (kit)", valor: 40 },
+  { cat: "🧼 Limpeza Pesada", nome: "Paninhos microfibra (kit)", valor: 30 },
+  { cat: "🧼 Limpeza Pesada", nome: "Luvas de limpeza", valor: 25 },
+  { cat: "🧼 Limpeza Pesada", nome: "Pulverizadores (2 un.)", valor: 30 },
+  { cat: "🧼 Limpeza Pesada", nome: "Rodo mágico/centrífuga", valor: 180 },
+  { cat: "🗂️ Organização", nome: "Cabides (kit)", valor: 130 },
+  { cat: "🗂️ Organização", nome: "Cestos roupa suja (2 un.)", valor: 120 },
+  { cat: "🗂️ Organização", nome: "Cestos organizadores", valor: 120 },
+  { cat: "🗂️ Organização", nome: "Caixas organizadoras", valor: 135 },
+  { cat: "🗂️ Organização", nome: "Organizadores para geladeira (kit)", valor: 120 },
+  { cat: "🗂️ Organização", nome: "Organizadores para despensa (kit)", valor: 120 },
+  { cat: "🗂️ Organização", nome: "Organizadores para banheiro (kit)", valor: 100 },
+  { cat: "🛁 Banheiro", nome: "Toalhas de banho (jogo)", valor: 400 },
+  { cat: "🛁 Banheiro", nome: "Tapete antiderrapante", valor: 30 },
+  { cat: "🛁 Banheiro", nome: "Lixeira pequena", valor: 50 },
+  { cat: "🛁 Banheiro", nome: "Porta-escovas", valor: 60 },
+  { cat: "🛁 Banheiro", nome: "Porta-sabonete", valor: 30 },
+  { cat: "🛁 Banheiro", nome: "Dispenser sabonete líquido", valor: 35 },
+  { cat: "🛁 Banheiro", nome: "Kit banheiro (escova + suporte)", valor: 40 },
+  { cat: "🛁 Banheiro", nome: "Rodo de pia/box", valor: 25 },
+  { cat: "🛏️ Roupa de Cama", nome: "Lençóis (jogo)", valor: 240 },
+  { cat: "🛏️ Roupa de Cama", nome: "Protetor impermeável colchão", valor: 120 },
+  { cat: "🛏️ Roupa de Cama", nome: "Cobertor", valor: 280 },
+  { cat: "🛏️ Roupa de Cama", nome: "Edredom", valor: 350 },
+  { cat: "🛏️ Roupa de Cama", nome: "Manta para sofá", valor: 150 },
+  { cat: "🛏️ Roupa de Cama", nome: "Travesseiros (4 un.)", valor: 400 },
+  { cat: "🛏️ Roupa de Cama", nome: "Protetores de travesseiro (4 un.)", valor: 80 },
+  { cat: "💅 Cuidados Pessoais", nome: "Chapinha", valor: 180 },
+  { cat: "💅 Cuidados Pessoais", nome: "Modelador de cachos", valor: 220 },
+  { cat: "💅 Cuidados Pessoais", nome: "Barbeador/aparador", valor: 180 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Quadros (conjunto)", valor: 300 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Prateleiras decorativas", valor: 250 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Plantas pequenas", valor: 100 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Vasos", valor: 120 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Iluminação extra", valor: 600 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Abajur (2 un.)", valor: 300 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Velas aromáticas", valor: 60 },
+  { cat: "🎨 Decoração & Bem-estar", nome: "Difusor de aromas", valor: 120 },
+  { cat: "🧺 Lavanderia", nome: "Varal de chão", valor: 180 },
+  { cat: "🧺 Lavanderia", nome: "Varal de parede", valor: 160 },
+  { cat: "🧺 Lavanderia", nome: "Pregadores (kit)", valor: 25 },
+  { cat: "🧺 Lavanderia", nome: "Cesto de pregadores", valor: 20 },
+  { cat: "🧺 Lavanderia", nome: "Capa da tábua", valor: 50 },
+  { cat: "🧺 Lavanderia", nome: "Escova para roupas", valor: 25 },
+  { cat: "🧺 Lavanderia", nome: "Rodo pequeno", valor: 25 },
+  { cat: "🧺 Lavanderia", nome: "Panos de limpeza (kit)", valor: 40 },
+  { cat: "🔧 Segurança & Manutenção", nome: "Lanterna", valor: 60 },
+  { cat: "🔧 Segurança & Manutenção", nome: "Kit ferramentas — martelo", valor: 60 },
+  { cat: "🔧 Segurança & Manutenção", nome: "Kit ferramentas — chave de fenda", valor: 40 },
+  { cat: "🔧 Segurança & Manutenção", nome: "Kit ferramentas — alicate", valor: 50 },
+  { cat: "🔧 Segurança & Manutenção", nome: "Kit ferramentas — trena", valor: 35 },
+  { cat: "🔧 Segurança & Manutenção", nome: "Kit ferramentas — nível", valor: 35 },
+
+];
+
+function groupByCategory(items) {
+  const map = {};
+  items.forEach((item, idx) => {
+    if (!map[item.cat]) map[item.cat] = [];
+    map[item.cat].push({ ...item, idx });
+  });
+  return map;
+}
+
+function renderPix() {
+  const section = document.getElementById('pix-section');
+  const grouped = groupByCategory(allItems);
+  document.getElementById('total-badge').textContent = allItems.length + ' itens';
+  Object.entries(grouped).forEach(([cat, items]) => {
+    const wrap = document.createElement('div');
+    const header = document.createElement('div');
+    header.className = 'pix-cat-header';
+    header.innerHTML = `
+      <span class="pix-cat-title">${cat}</span>
+      <div class="pix-cat-right">
+        <span class="pix-cat-count">${items.length} ${items.length===1?'item':'itens'}</span>
+        <span class="pix-cat-arrow">▾</span>
+      </div>`;
+    header.onclick = () => {
+      const grid = wrap.querySelector('.pix-items-grid');
+      const open = grid.classList.toggle('open');
+      header.classList.toggle('open', open);
+    };
+    const grid = document.createElement('div');
+    grid.className = 'pix-items-grid';
+    items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'pix-item-card';
+      card.innerHTML = `
+        <div class="pix-item-info">
+          <div class="pix-item-name">${item.nome}</div>
+          <div class="pix-item-price">R$ ${item.valor.toLocaleString('pt-BR')}</div>
+        </div>
+        <button class="btn-presentear" onclick="openModal(${item.idx})">💛 Presentear</button>`;
+      grid.appendChild(card);
+    });
+    wrap.appendChild(header);
+    wrap.appendChild(grid);
+    section.appendChild(wrap);
+  });
+}
+
+function showTab(tab, btn) {
+  document.querySelectorAll('.list-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+function openModal(idx) {
+  const item = allItems[idx];
+  document.getElementById('modal-item-name').textContent = item.nome;
+  document.getElementById('modal-item-price').textContent = 'R$ ' + item.valor.toLocaleString('pt-BR');
+  document.getElementById('modal-pix-key').textContent = PIX_KEY;
+  document.getElementById('modal-mp-link').href = MP_LINK;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+function copiarPix() {
+  navigator.clipboard.writeText(PIX_KEY).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+function updateCountdown() {
+  const diff = new Date('2026-10-24T16:00:00') - new Date();
+  if (diff <= 0) { ['cd-dias','cd-horas','cd-min','cd-seg'].forEach(id => document.getElementById(id).textContent='00'); return; }
+  document.getElementById('cd-dias').textContent  = String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-horas').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-min').textContent   = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cd-seg').textContent   = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+
+function confirmarPresenca() {
+  const nome = document.getElementById('rsvp-nome').value.trim();
+  if (!nome) { alert('Por favor, informe seu nome!'); return; }
+  document.getElementById('rsvp-success').style.display = 'block';
+  document.getElementById('rsvp-nome').value = '';
+  document.getElementById('rsvp-msg').value = '';
+}
+
+renderPix();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
